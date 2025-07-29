@@ -1,269 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sampad- Developer Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="style_updated.css">
-<link rel="icon" type="img/x-icon" href="s.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sampad - Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="icon" type="img/x-icon" href="s.png" />
 
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
+    }
 
-        body{
-            background-color: rgb(0, 0, 33);
-            color: white;
-            font-family: 'poppins', sans-serif;
-        }
+    body {
+      background: linear-gradient(135deg, #0a0f2c, #0f1d40, #192959);
+      color: white;
+      overflow-x: hidden;
+    }
 
-        nav{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            height: 150px;
-            background-color:rgb(18,18, 62);
-        }
-        nav ul{
-            display: flex;
-            justify-content: center;
+    /* ---------- Loader ---------- */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: linear-gradient(135deg, #0a0f2c, #0f1d40, #192959);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-        }
-        nav ul li{
-            list-style: none;
-            margin: 0 23px;
-        }
-        nav ul li a{
-            color: white;
-            text-decoration: none;
-            font-size: 1.04rem;
-        }
-        nav ul li a:hover{
-            color: rgb(133, 133, 183);
-            font-size: 1.04rem;
-        }
-   
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid white;
+      border-top: 6px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
 
-        
-        .left{
-            font-size: 1.5em;
-        }
-        .firstsection{
-            display: flex;
-            justify-content: space-around;
-            margin: 80px 0;
-        }
-    
-        .firstsection > div{
-            width: 30%;
-            
-        }
-        .leftsection{
-            margin: 30px 0;
-            font-size: 3rem;
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
-        }
-        .rightsection img{
-            width: 80%;
-            margin:50px 0;
-            
-        }
-        .purpel{
-            color: rgb(162, 92, 228);
-        }
-        #element{
-            color: rgb(162, 92, 228);
-        }
-        .secondsection{
-            max-width: 80vw;
-            margin: auto;
+    #loader h2 {
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
 
-        }
-        h1{
-            max-width: 80vw;
-            margin: auto;
-        }
-        .aboutme{
-            max-width: 80vw;
-            margin: auto;
-        }
-        main hr{
-            border: 0;
-            background: lavender;
-            height: 1.2px;
-            margin: 40px 84px;
-        }
-        #school{
-            
-            color: rgb(162, 92, 228);
-        }
-        #clg{
-            color: rgb(162, 92, 228);
-        }
-        h1{
-            font-size: 40px;
-        }
-        footer{
-            background-color: rgba(12, 6, 42, 0.579);
-            height: 10px;
-            padding: 50px;
-        }
-        .footer{
-            display: flex;
-            margin: 23px 122px;
-            
-        }
-        .text-center{
-            text-align: center;
-            color:rgb(162, 92, 228) ;
-        }
-        .buy-me-coffee{
-            text-decoration: none;
-            text-align: center;
-            color:rgb(162, 92, 228) ;
-        }
-        .btn{
-            font-family: 'poppins', sans-serif;
-            margin-left: 180px;
-            
-            
-           
-            
-            
-        }
-       .btn-primary{
-            background: rgb(132, 1, 255);
-            border-radius: 10px;
-            font-family: 'poppins', sans-serif;
-            color: white;
-            margin: 30px 0;
-            
+    /* ---------- Glass Effect ---------- */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+      border-radius: 16px;
+      padding: 20px;
+    }
 
-        }
-        
-    </style>
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: rgba(18, 18, 62, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    nav ul li {
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: rgb(133, 133, 183);
+    }
+
+    .left {
+      font-size: 1.4em;
+      font-weight: 600;
+    }
+
+    .firstsection {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      margin: 80px 0;
+      padding: 0 20px;
+    }
+
+    .firstsection > div {
+      flex: 1 1 300px;
+      max-width: 600px;
+    }
+
+    .leftsection {
+      font-size: 2.5rem;
+      margin: 30px 0;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .rightsection img {
+      width: 100%;
+      max-width: 400px;
+      margin: 30px 0;
+    }
+
+    .purpel {
+      color: rgb(162, 92, 228);
+    }
+
+    #element {
+      color: rgb(162, 92, 228);
+    }
+
+    .secondsection, .aboutme {
+      max-width: 90vw;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    main hr {
+      border: 0;
+      background: lavender;
+      height: 1px;
+      margin: 40px auto;
+      width: 90%;
+    }
+
+    #school,
+    #clg {
+      color: rgb(162, 92, 228);
+    }
+
+    footer {
+      background-color: rgba(12, 6, 42, 0.4);
+      padding: 40px 20px;
+    }
+
+    .text-center {
+      text-align: center;
+      color: rgb(162, 92, 228);
+    }
+
+    .buy-me-coffee {
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: rgb(162, 92, 228);
+    }
+
+    .btn-primary {
+      background: rgb(132, 1, 255);
+      border-radius: 10px;
+      color: white;
+      margin: 10px;
+      padding: 10px 20px;
+      font-weight: 500;
+    }
+
+    /* ---------- Responsive Tweaks ---------- */
+    @media screen and (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .leftsection {
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      nav ul {
+        justify-content: center;
+        padding: 0;
+      }
+
+      .rightsection img {
+        margin: 0 auto;
+        display: block;
+      }
+
+      .btn-primary {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav >
-            <div class="left">Sampad's Portfolio</div>
-            <div calss="right">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="#ab">About</a></li>
-                    <li><a href="/">Services</a></li>
-                    <li><a href="#Projects">Projects</a></li>
-                    <li><a href="#btn">Contact me</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <section class="firstsection">
-            <div class="leftsection">
-                Hi, My name is <span class="purpel" >Sampad</span> and I am a Student
-                <span id="element"></span>
-            </div>
-            <div class="rightsection">
-                <img src="bg.png" alt="bg img">
-            </div>
-        </section>
 
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <h2>Loading Portfolio...</h2>
+  </div>
 
-        <div class="container text-center my-3" id="btn">
-            <div class="row justify-content-center">
-                <div class="col-auto p-1">
-                    <a class="btn btn-primary" href="https://www.linkedin.com/in/sampad-das-465575301/" role="button">
-                        Connect with me on LinkedIn
-                    </a>
-                </div>
-                <div class="col-auto p-1">
-                    <a class="btn btn-primary" href="https://github.com/Sam-coder101" role="button">
-                        Connect with me on GitHub
-                    </a>
-                </div>
-            </div>
+  <!-- Portfolio Content -->
+  <header>
+    <nav>
+      <div class="left">Sampad's Portfolio</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#ab">About</a></li>
+        <li><a href="/">Services</a></li>
+        <li><a href="/">Projects</a></li>
+        <li><a href="#btn">Contact me</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="firstsection">
+      <div class="leftsection glass">
+        Hi, My name is <span class="purpel">Sampad</span><br />and I am a Student<br />
+        <span id="element"></span>
+      </div>
+      <div class="rightsection">
+        <img src="bg.png" alt="bg img" />
+      </div>
+    </section>
+
+    <div class="container text-center my-3" id="btn">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-12 p-1">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/sampad-das-465575301/" role="button">
+            Connect with me on LinkedIn
+          </a>
         </div>
-        
-        
-        
-        
-        
-           
-        <HR></HR>
-        <section>
-            
-            
-            <div class="aboutme" id="ab">
-                <h1>About Me</h1>
-                <p>
-                    Hi, I'm Sampad Das, a passionate Web Developer, Designer, and Programmer. I specialize in creating intuitive, responsive websites and applications, blending my technical expertise with a keen eye for design. With a commitment to clean code and user-friendly interfaces, I strive to bring innovative ideas to life, crafting solutions that not only meet but exceed client expectations.
-                </p>
-                    <P>
-                        Let's connect and build something amazing together!
-                    </P>
-            </div>
-        </section>
-        <section>
-        <HR></HR>
-            <div class="secondsection">
-                <h1>Education</h1>
-                <p>Schooling from 
-                <span id="school">Kalyani Central Model School</span>, West Bengal</p>
-                <p>Currently, persuing B.Tech IT from 
-                <span id="clg">
-                Techno Main Salt Lake
-                </span> , West Bengal</p>
-
-            </div>
-            
-        </section>
-        <HR></HR>
-        <section>
-
-            <div class="secondsection" id="Projects">
-                <h1>Projects</h1>
-                <p>All In One Event Manager: A platform where users can join or host meeting and code in realtime with others(still optimizing) <a href="https://codequad-esummit-2024.pages.dev/login"> Click here </a> </p>
-                
-            </div>
-        </section>
-     
-    </main>
-
-
-
-    <footer>
-        <div class="flex">
-            <div class="footer-first">
-                <h3>Sampad's Developer Portfolio</h3>
-            </div>
-            <div class="footer-second"></div>
-            <div class="footer-third"></div>
-            <div class="footer-fourth"></div>
-            
+        <div class="col-md-6 col-sm-12 p-1">
+          <a class="btn btn-primary" href="https://github.com/Sam-coder101" role="button">
+            Connect with me on GitHub
+          </a>
         </div>
-        <div class="text-center">
-            www.sam-coder101.github.io/New-portfolio/|All rights reserved
-        </div>
-        <div class="buy-me-coffee">
-            <a href="coffee.jpg">Buy me a coffee</a>
-        </div>
-      
-           
-    </footer>
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script>
-        var typed = new Typed('#element', {
-          strings: ['Web Developer','Web Designer','Gamer','Video Editor'],
-          typeSpeed: 150,
-        });
-      </script>
-    
+      </div>
+    </div>
+
+    <hr />
+
+    <section>
+      <div class="aboutme glass" id="ab">
+        <h1>About Me</h1>
+        <p>
+          Hi, I'm Sampad Das, a passionate Web Developer, Designer, and Programmer. I specialize in creating intuitive,
+          responsive websites and applications, blending my technical expertise with a keen eye for design.
+        </p>
+        <p>Let's connect and build something amazing together!</p>
+      </div>
+    </section>
+
+    <hr />
+
+    <section>
+      <div class="secondsection glass">
+        <h1>Education</h1>
+        <p>
+          Schooling from <span id="school">Kalyani Central Model School</span>, West Bengal
+        </p>
+        <p>
+          Currently, pursuing B.Tech IT from <span id="clg">Techno Main Salt Lake</span>, West Bengal
+        </p>
+      </div>
+    </section>
+  </main>
+    <!-- Projects Section -->
+<!-- <section class="glass my-5 py-5" id="projects" style="background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);">
+  <style>
+    .card.glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.6s ease, box-shadow 0.6s ease;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .card.glass:hover {
+      transform: rotateY(5deg) scale(1.03);
+      box-shadow: 0 15px 30px rgba(162, 92, 228, 0.6);
+    }
+
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .card-title {
+      font-weight: 600;
+      color: #a25ce4;
+    }
+
+    .card-text {
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background-color: #a25ce4;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #8c3ddc;
+    }
+
+    @media (max-width: 768px) {
+      .row.row-cols-1 {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+      }
+
+      .row.row-cols-1 .col {
+        flex: 0 0 80%;
+        scroll-snap-align: center;
+        padding-right: 1rem;
+      }
+    }
+  </style>
+  <div class="container">
+    <h1 class="text-center mb-5 fw-bold text-white">Projects</h1>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> -->
+
+      <!-- Project Card 1 -->
+      <!-- <div class="col">
+        <div class="card h-100 text-white border-0 shadow glass"> -->
+          <!-- <img src="project1.jpg" class="card-img-top" alt="Project 1"> -->
+          <!-- <div class="card-body">
+            <h5 class="card-title">AI Portfolio Generator</h5>
+            <p class="card-text">A MERN app that auto-generates developer portfolios using OpenAI & MongoDB.</p>
+            <a href="https://github.com/Sam-coder101/ai-portfolio-generator" class="btn btn-primary mt-2" target="_blank">View on GitHub</a>
+          </div>
+        </div> -->
+      <!-- </div> -->
+
+      <!-- Project Card 2 -->
+      <!-- <div class="col">
+        <div class="card h-100 text-white border-0 shadow glass"> -->
+          <!-- <img src="project2.jpg" class="card-img-top" alt="Project 2"> -->
+          <!-- <div class="card-body">
+            <h5 class="card-title">Flashcard App</h5>
+            <p class="card-text">AI-powered flashcard app with OCR and MongoDB storage, built using React.</p>
+            <a href="https://github.com/Sam-coder101/ai-flashcard-app" class="btn btn-primary mt-2" target="_blank">View on GitHub</a>
+          </div>
+        </div> -->
+      <!-- </div> -->
+
+      <!-- Project Card 3 -->
+      <!-- <div class="col">
+        <div class="card h-100 text-white border-0 shadow glass"> -->
+          <!-- <img src="project3.jpg" class="card-img-top" alt="Project 3"> -->
+          <!-- <div class="card-body">
+            <h5 class="card-title">Collaborative Code Editor</h5>
+            <p class="card-text">Real-time code collaboration platform with screen sharing and AI debugger.</p>
+            <a href="https://github.com/Sam-coder101/collab-code-editor" class="btn btn-primary mt-2" target="_blank">View on GitHub</a>
+          </div> -->
+        <!-- </div>
+      </div>
+
+    </div>
+  </div> -->
+<!-- </section> --> 
+
+
+
+
+
+  <footer>
+    <div class="text-center">
+      <h3>Sampad's Developer Portfolio</h3>
+      <!-- <p>www.sam-coder101.github.io/New-portfolio/ | All rights reserved</p> -->
+      <!-- <a class="buy-me-coffee" href="coffee.jpg">Buy me a coffee</a> -->
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script>
+    var typed = new Typed('#element', {
+      strings: ['Web Developer', 'Web Designer', 'Gamer', 'Video Editor'],
+      typeSpeed: 150,
+      loop: true
+    });
+
+    window.addEventListener('load', function () {
+      document.getElementById('loader').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
